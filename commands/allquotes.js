@@ -1,3 +1,5 @@
+const { ownerID } = require("../config.json");
+
 module.exports = {
 	name: "allquotes",
 	description: "Equivalent to \`$quote [user] all\`.",
@@ -5,6 +7,9 @@ module.exports = {
   args: true,
   usage: "[user]",
 	execute(message, args){
-    message.client.emit("message", "$quote ninjer all");
+		const user = args[0];
+		const allQuoteMessage = message;
+		allQuoteMessage.content = `$quote ${user} all`;
+    message.client.emit("message", allQuoteMessage);
 	},
 };

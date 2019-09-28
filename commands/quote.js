@@ -16,12 +16,23 @@ module.exports = {
 			if (allQuotes.length === 0) return message.channel.send(`**${target.username}** has no quotes. How sad.`);
 
 			if (number === "all"){
-				let index = 1
+				const quoteImageList = [];
 				const quoteList = allQuotes.map(q => q.description);
 				for (let i = 0; i < quoteList.length; i++){
-					quoteList[i] = (i + 1) + ". " + quoteList[i];
+					let quote;
+					if (quoteList[i].startsWith("&QUOTEIMAGE")) {
+						const filename = quoteList[i].slice(quoteList[i].indexOf(" ") + 1);
+						const attachmentOptions = {
+							attachment: `./assets/quoteimg/${filename}`
+						}
+						quoteImageList.push(attachmentOptions);
+						quoteList[i] = (i + 1) + ". " + "*(image)*";
+					}
+					else quoteList[i] = (i + 1) + ". " + quoteList[i];
 				};
-				return message.channel.send(`Here are all quotes from **${target.username}**:\n${quoteList.join("\n")}`);
+				return message.channel.send(`Here are all quotes from **${target.username}**:\n${quoteList.join("\n")}`, {
+						files: quoteImageList
+					});
 			}
 
 			let index;
@@ -31,11 +42,25 @@ module.exports = {
 			if (!Number.isInteger(index)) return message.channel.send("Please specify a valid number.");
 			if (index > allQuotes.length) return message.channel.send(`**${target.username}** only has ${allQuotes.length} quote(s)!`);
 
-			const quote = allQuotes[index - 1];
-			Embed.setAuthor(target.username, target.displayAvatarURL)
-			.setDescription(quote.get("description"))
-			.setColor(Math.floor((Math.random() * 16777216)));
-			quote.increment("usage_count");
+			try {
+				const quote = allQuotes[index - 1];
+				Embed.setAuthor(target.username, target.displayAvatarURL)
+				.setColor(Math.floor((Math.random() * 16777216)));
+
+				if (quote.get("description").startsWith("&QUOTEIMAGE")){
+					const filename = quote.get("description").slice(quote.get("description").indexOf(" ") + 1);
+					Embed.attachFiles([`./assets/quoteimg/${filename}`])
+					.setImage(`attachment://${filename}`);
+				}
+				else {
+					Embed.setDescription(quote.get("description"))
+				}
+
+				quote.increment("usage_count");
+			}catch(error) {
+				console.error(error);
+				message.channel.send("error sending quote")
+			}
 
 			return message.channel.send(Embed);
 		}

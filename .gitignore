@@ -1,3 +1,4 @@
 *.sqlite
+databases
 config.json 
 node_modules/
