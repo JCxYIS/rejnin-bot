@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const embed = require("../embedtemplate.js");
+const embed = require("../bot-modules/embedtemplate.js");
 
 module.exports = {
 	name: "say",
