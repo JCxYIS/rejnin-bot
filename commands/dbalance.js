@@ -2,9 +2,9 @@ const Discord = require('discord.js');
 const getUser = require("../bot-modules/getuser.js");
 
 module.exports = {
-	name: "balance",
-	description: "Shows how much money a member has.",
-  aliases: ["money"],
+	name: "dbalance",
+	description: "Shows how much Doubee a user has.",
+  aliases: ["dmoney", "balance", "money"],
 	execute(message, args){
 		if (!args[0]) return message.channel.send(`**${message.author.username}** has \`$${message.client.currency.getBalance(message.author.id)}\`.`);
 		const name = message.content.slice(message.content.indexOf(" ") + 1);

@@ -6,7 +6,7 @@ module.exports = {
 	name: "quote",
 	description: "Displays a quote (or all quotes) from a user.",
 	aliases: ["quotes", "q"],
-	usage: "[user] [number/all]",
+	usage: "[user] [number/all/random/r]",
 	async execute(message, args){
 
 		async function getQuote(target, number){
@@ -36,7 +36,7 @@ module.exports = {
 			}
 
 			let index;
-			if (number === "random")  index = 1 + Math.floor(Math.random() * allQuotes.length);
+			if (number === "random" || number === "r")  index = 1 + Math.floor(Math.random() * allQuotes.length);
 			else index = parseFloat(number);
 
 			if (!Number.isInteger(index)) return message.channel.send("Please specify a valid number.");
