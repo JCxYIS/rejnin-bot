@@ -1,11 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define("currencyShop", {
-    name: {
+  return sequelize.define("users", {
+    user_id: {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    cost: {
+    permissions: {
       type: DataTypes.INTEGER,
+      defaultValue: 1,
       allowNull: false,
     },
   }, {

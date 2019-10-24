@@ -1,12 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define("users", {
+  return sequelize.define("userbirthdays", {
     user_id: {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    balance: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
+    birthday: {
+      type: DataTypes.DATE,
       allowNull: false,
     },
   }, {

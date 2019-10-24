@@ -15,16 +15,15 @@ const sequelize = new Sequelize("database", "username", "password", {
 // 	Models.set(model, sequelize.import(`./models/${file}`)); //sequelize magic method stuff (same as require(blah)(sequelize, Sequelize))
 // };
 
-const Users = sequelize.import("models/Users");
-const CurrencyShop = sequelize.import("models/CurrencyShop");
+const Quotes = sequelize.import("models/Quotes");
+const UserBalance = sequelize.import("models/UserBalance");
+const UserBirthdays = sequelize.import("models/UserBirthdays");
 const UserItems = sequelize.import("models/UserItems");
-const Quotes = sequelize.import("models/Quotes")
+const UserPerms = sequelize.import("models/UserPerms");
 
-UserItems.belongsTo(CurrencyShop), { foreignKey: "item_id", as: "item" };
-
-Users.prototype.addItem = async function(item) {
+UserItems.prototype.addItem = async function(item) {
 	const userItem = await UserItems.findOne({
-		where: { user_id: this.user_id, item_id: item.id },
+		where: { user_id: this.user_id, item_name: item.name },
 	});
 
 	if (userItem) {
@@ -32,14 +31,15 @@ Users.prototype.addItem = async function(item) {
 		return userItem.save();
 	}
 
-	return UserItems.create({ user_id: this.user_id, item_id: item.id, amount: 1 });
+	return UserItems.create({ user_id: this.user_id, item_name: item.name, amount: 1 });
 };
 
-Users.prototype.getItems = function() {
+UserItems.prototype.getItems = function() {
 	return UserItems.findAll({
 		where: { user_id: this.user_id },
 		include: ["item"],
 	});
 };
 
-module.exports = { Users, CurrencyShop, UserItems, Quotes};
+//module.exports = { Users, CurrencyShop, UserItems, Quotes };
+module.exports = { Quotes, UserBalance, UserBirthdays, UserItems, UserPerms };

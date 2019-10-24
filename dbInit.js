@@ -4,7 +4,7 @@ const fs = require("fs");
 const sequelize = new Sequelize('database', 'username', 'password', {
 	host: 'localhost',
 	dialect: 'sqlite',
-	logging: false,
+	logging: false, //setting this to false disables the verbose output from Sequelize. Set it to true when you are trying to debug.
 	operatorsAliases: false,
 	storage: 'database.sqlite',
 });
@@ -19,12 +19,12 @@ for (const file of modelFiles) {
 const force = process.argv.includes("--force") || process.argv.includes("--f");
 
 sequelize.sync({ force }).then(async () => {
-  const shop = [
-    models.get("CurrencyShop").upsert({name: "Tea", cost: 1}),
-    models.get("CurrencyShop").upsert({name: "Cookie", cost: 3}),
-    models.get("CurrencyShop").upsert({name: "Cake", cost: 5})
-  ];
-  await Promise.all(shop);
+  // const shop = [
+  //   models.get("CurrencyShop").upsert({name: "Tea", cost: 1}),
+  //   models.get("CurrencyShop").upsert({name: "Cookie", cost: 3}),
+  //   models.get("CurrencyShop").upsert({name: "Cake", cost: 5})
+  // ];
+  // await Promise.all(shop);
   console.log("Database synced.");
   sequelize.close();
 }).catch(console.error);
