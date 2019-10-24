@@ -21,25 +21,25 @@ const UserBirthdays = sequelize.import("models/UserBirthdays");
 const UserItems = sequelize.import("models/UserItems");
 const UserPerms = sequelize.import("models/UserPerms");
 
-UserItems.prototype.addItem = async function(item) {
-	const userItem = await UserItems.findOne({
-		where: { user_id: this.user_id, item_name: item.name },
-	});
-
-	if (userItem) {
-		userItem.amount += 1;
-		return userItem.save();
-	}
-
-	return UserItems.create({ user_id: this.user_id, item_name: item.name, amount: 1 });
-};
-
-UserItems.prototype.getItems = function() {
-	return UserItems.findAll({
-		where: { user_id: this.user_id },
-		include: ["item"],
-	});
-};
+// UserItems.prototype.addItem = async function(item) {
+// 	const userItem = await UserItems.findOne({
+// 		where: { user_id: this.user_id, item_name: item.name },
+// 	});
+//
+// 	if (userItem) {
+// 		userItem.amount += 1;
+// 		return userItem.save();
+// 	}
+//
+// 	return UserItems.create({ user_id: this.user_id, item_name: item.name, amount: 1 });
+// };
+//
+// UserItems.prototype.getItems = function() {
+// 	return UserItems.findAll({
+// 		where: { user_id: this.user_id },
+// 		include: ["item"],
+// 	});
+// };
 
 //module.exports = { Users, CurrencyShop, UserItems, Quotes };
 module.exports = { Quotes, UserBalance, UserBirthdays, UserItems, UserPerms };
