@@ -39,13 +39,14 @@ async function init(){
 	Reflect.defineProperty(client.currency, 'add', {
 		value: async function add(id, amount) {
 			const user = client.currency.get(id);
-			if (user) {
-				user.balance += Number(amount);
-				return user.save();
+			if (!user) {
+				//if (amount < 0) return channel.send(`Insufficient Doubees. ($**0**)`);
+				const newUser = await UserBalance.create({ user_id: id, balance: amount });
+				client.currency.set(id, newUser);
+				return newUser;
 			}
-			const newUser = await UserBalance.create({ user_id: id, balance: amount });
-			client.currency.set(id, newUser);
-			return newUser;
+			user.balance += Number(amount);
+			return user.save();
 		},
 	});
 

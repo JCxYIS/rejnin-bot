@@ -6,10 +6,10 @@ const embed = function(message){
 		"footer": {
 			"text": `${Client.user.username} is a bot made by ninjer#6366`
 		},
-		"author": {
-			"name": Client.user.username,
-      "icon_url": Client.user.avatarURL
-		}
+		// "author": {
+		// 	"name": Client.user.username,
+    //   "icon_url": Client.user.avatarURL
+		// }
 	}
 	return embedTemplate;
 };

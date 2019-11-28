@@ -5,6 +5,8 @@ module.exports = {
 	name: "test",
 	description: "aaaa",
 	ownerExclusive: "true",
+  aliases: ["a"],
+  usage: "fd",
 	execute(message, args){
 		const Embed = new Discord.RichEmbed(embed(message));
 		Embed.addField('Inline field title', 'Some value here', true);

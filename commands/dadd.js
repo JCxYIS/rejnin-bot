@@ -35,6 +35,6 @@ module.exports = {
 		.catch(error => {
 				message.channel.send("I couldn't find the user you were looking for!");
 				console.error(error);
-			});
+		});
 	},
 };

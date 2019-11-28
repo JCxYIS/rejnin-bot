@@ -5,7 +5,7 @@ const embed = require("../bot-modules/embedtemplate.js");
 module.exports = {
 	name: "restart",
 	description: "Restarts the bot. Can only be used by bot owner `ninjer#6366`.",
-	aliases: ["sleep"],
+	aliases: ["sleep", "r", "fuckoff"],
 	ownerExclusive: true,
 	execute(message, args){
 		const Embed = new Discord.RichEmbed(embed(message));

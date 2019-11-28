@@ -1,0 +1,46 @@
+{
+  "gacha": [
+    {
+      "name": "USSR",
+      "chance": 0.001,
+      "cards": [
+        {"id": 1, "name": "yee", "url": "../assets/gacha"}
+      ]
+    },
+    {
+      "name": "UR",
+      "chance": 0.01,
+      "cards": [
+        "taichi"
+      ]
+    },
+    {
+      "name": "SSR",
+      "chance": 0.03,
+      "cards": [
+        "meteor"
+      ]
+    },
+    {
+      "name": "SR",
+      "chance": 0.10,
+      "cards": [
+        "juice"
+      ]
+    },
+    {
+      "name": "R",
+      "chance": 0.15,
+      "cards": [
+        "lolicon"
+      ]
+    },
+    {
+        "name": "M",
+        "chance": 1,
+        "cards": [
+          "infinity no"
+        ]
+      }
+  ]
+}
