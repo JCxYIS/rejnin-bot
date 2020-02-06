@@ -9,7 +9,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 	storage: 'database.sqlite',
 });
 
-const models = new Map()
+const models = new Map();
 const modelFiles = fs.readdirSync("./models").filter(file => file.endsWith(".js"));
 for (const file of modelFiles) {
 	const model = file.split(".")[0];

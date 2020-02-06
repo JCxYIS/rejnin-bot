@@ -2,8 +2,10 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const { prefix, ownerID } = require("../../config.json");
 const timestamp = require("../../bot-modules/currentTime.js");
+const moment = require("moment");
 
 const cooldowns = new Discord.Collection();
+const lastMessage = new Discord.Collection();
 
 module.exports = class {
   constructor(client){
@@ -26,7 +28,25 @@ module.exports = class {
   	if (message.content === "街溪" || message.content === "接西")
   		message.channel.send("是蘿莉控。");
 
-  	if (!message.content.startsWith(prefix)) return;
+    if (!this.client.currency.get(message.author.id) || this.client.currency.get(message.author.id).lastDaily !== moment().format("L")){
+      const user = this.client.currency.get(message.author.id);
+      this.client.currency.add(message.author.id, 200);
+      user.lastDaily = moment().format("L");
+      user.save();
+    }
+
+    const prefixes = ["!", "$", "?", "*", "-", "~"];
+  	if (prefixes.every( s => !message.content.startsWith(s) )){
+      if (message.content.startsWith(":") && message.content.endsWith(":")){
+        const num = Math.floor(Math.random() * 2);
+        message.client.currency.add(message.author.id, num);
+      } else {
+        const num = Math.floor(Math.random() * 7) + 2;
+        message.client.currency.add(message.author.id, num);
+      }
+
+      return;
+    }
 
   	const args = message.content.slice(prefix.length).split(/ +/);
   	const commandName = args.shift().toLowerCase();

@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const embed = require("../bot-modules/embedtemplate.js");
+const moment = require("moment");
 
 module.exports = {
 	name: "coinflip",
@@ -12,11 +13,20 @@ module.exports = {
 		const tailsAliases = ["tails", "tail", "t"];
 		const edgeAliases = ["edge", "e"];
 
-		let guess = "", amount = 0;
+		let guess = "", amount = 0, multiplier = 0;
 		if (!!args[0] && !!args[1]){
-			if (headsAliases.some((name) => {return name === args[0]})) {guess = "heads";}
-			else if (tailsAliases.some((name) => {return name === args[0]})) {guess = "tails";}
-			//else if (edgeAliases.some((name) => {return name === args[0]})) {guess = "edge";}
+			if (headsAliases.some((name) => {return name === args[0]})) {
+				guess = "heads";
+				multiplier = 2;
+			}
+			else if (tailsAliases.some((name) => {return name === args[0]})) {
+				guess = "tails";
+				multiplier = 2;
+			}
+			else if (edgeAliases.some((name) => {return name === args[0]})) {
+				guess = "edge";
+				multiplier = 100;
+			}
 			else return;
 
 			amount = parseFloat(args[1]);
@@ -40,8 +50,10 @@ module.exports = {
 			side = "heads";
 		}
 
+		console.log(`[${moment().format("LTS")}] ${message.author.username} rolled a ${num}.`)
 		if (!!guess && !!amount){
-			amount = (guess === side) ? amount : -amount;
+			message.client.currency.add(message.author.id, -amount);
+			amount = (guess === side) ? multiplier * amount : 0;
 			const result = (guess === side) ? "You won the bet!" : "You lost the bet.";
 			message.client.currency.add(message.author.id, amount)
 			.then(() => {

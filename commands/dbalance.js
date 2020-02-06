@@ -4,7 +4,7 @@ const getUser = require("../bot-modules/getuser.js");
 module.exports = {
 	name: "dbalance",
 	description: "Shows how much Doubee a user has.",
-  aliases: ["dmoney", "balance", "money"],
+  aliases: ["dmoney", "balance", "money", "b"],
 	execute(message, args){
 		if (!args[0]) return message.channel.send(`**${message.author.username}** has \`$${message.client.currency.getBalance(message.author.id)}\`.`);
 		const name = message.content.slice(message.content.indexOf(" ") + 1);
