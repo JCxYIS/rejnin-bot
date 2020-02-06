@@ -1,5 +1,8 @@
 *.sqlite
 databases
-config.json 
+config.json
 node_modules/
 useless-shit/
+package.json
+package-lock.json
+.-pm2.json

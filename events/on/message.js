@@ -37,7 +37,7 @@ module.exports = class {
 
     const prefixes = ["!", "$", "?", "*", "-", "~"];
   	if (prefixes.every( s => !message.content.startsWith(s) )){
-      if (message.content.startsWith(":") && message.content.endsWith(":")){
+      if (message.content.startsWith("<") && message.content.endsWith(">")){
         const num = Math.floor(Math.random() * 2);
         message.client.currency.add(message.author.id, num);
       } else {

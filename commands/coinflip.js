@@ -50,7 +50,7 @@ module.exports = {
 			side = "heads";
 		}
 
-		console.log(`[${moment().format("LTS")}] ${message.author.username} rolled a ${num}.`)
+		//console.log(`[${moment().format("LTS")}] ${message.author.username} rolled a ${num}.`)
 		if (!!guess && !!amount){
 			message.client.currency.add(message.author.id, -amount);
 			amount = (guess === side) ? multiplier * amount : 0;
