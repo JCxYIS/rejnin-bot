@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const embed = require("../bot-modules/embedtemplate.js");
 const moment = require("moment");
+const Canvas = require('canvas');
 
 module.exports = {
 	name: "coinflip",
@@ -62,6 +63,14 @@ module.exports = {
 			.then(newBalance => {
 				Embed.setDescription(`**${result}\n${message.author.tag}** now has \`$${newBalance}\`.`);
 				message.channel.send(Embed);
+				return newBalance;
+			})
+			.then(newBalance =>{
+				if (newBalance === 0){
+					const [filepath, filename] = Math.floor(Math.random() * 2) === 1 ? ["./assets/notstonks.jpg", "notstonks.jpg"] : ["./assets/stinks.png", "stinks.png"];
+					const img = new Discord.Attachment(filepath, filename);
+					message.channel.send("", img);
+				}
 			})
 			.catch(error => {
 				console.error(error);

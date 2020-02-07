@@ -77,7 +77,7 @@ module.exports = class {
       // }
 
       this.client.user.setActivity(`Type ${prefix}help for a list of my commands!`);
-      this.client.channels.get("594536606241914890").send("Hello again!");
+      this.client.channels.get("594536606241914890").send(online[Math.floor(Math.random() * online.length)]);
 
     }
 };
