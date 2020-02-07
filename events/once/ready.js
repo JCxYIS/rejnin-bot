@@ -57,7 +57,7 @@ module.exports = class {
           if (i >= statuses.length) i = 0;
           statusTimer = 0;
         }
-        if (moment().format("LTS") === "12:00:00 AM") {
+        if (moment().format("HH:mm") === "00:00") {
           const lb = this.client.channels.get("301333367214047233").lastMessage;
           try {
             this.client.commands.get("leaderboard").execute(lb, [15]);
