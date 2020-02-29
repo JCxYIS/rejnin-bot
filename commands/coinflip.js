@@ -38,13 +38,14 @@ module.exports = {
 
 		let side = "";
     const num = Math.floor(Math.random() * 101) + 1;
-    if (num < 51) {
-			Embed.setImage("https://imgur.com/8kJTODS.gif").setTitle("The coin landed on tails!");
-			side = "tails";
-		}
-    else if (num === 51) {
+
+    if (num === 51) {
 			Embed.setImage("https://imgur.com/WVbap25.gif").setTitle("The coin landed on edge!");
 			side = "edge";
+		}
+    else if (num % 2 === 1) {
+			Embed.setImage("https://imgur.com/8kJTODS.gif").setTitle("The coin landed on tails!");
+			side = "tails";
 		}
     else {
 			Embed.setImage("https://imgur.com/jwWUQOy.gif").setTitle("The coin landed on heads!");
