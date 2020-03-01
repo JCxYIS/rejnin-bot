@@ -5,4 +5,4 @@ node_modules/
 useless-shit/
 package.json
 package-lock.json
-.-pm2.json
+*-pm2.json

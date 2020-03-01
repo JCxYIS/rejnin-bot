@@ -1,5 +1,3 @@
-const { ownerID } = require("../config.json");
-
 module.exports = {
 	name: "allquotes",
 	description: "Equivalent to \`$quote [user] all\`.",
