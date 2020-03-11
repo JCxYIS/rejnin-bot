@@ -4,7 +4,7 @@ const fs = require("fs");
 const sequelize = new Sequelize('database', 'username', 'password', {
 	host: 'localhost',
 	dialect: 'sqlite',
-	logging: false, //setting this to false disables the verbose output from Sequelize. Set it to true when you are trying to debug.
+	logging: false, //setting this to false disables the verbose output from Sequelize. Set it to (...msg) => console.log(msg) when you are trying to debug.
 	operatorsAliases: false,
 	storage: 'database.sqlite',
 });

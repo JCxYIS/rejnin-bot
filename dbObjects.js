@@ -20,6 +20,7 @@ const UserBalance = sequelize.import("models/UserBalance");
 const UserBirthdays = sequelize.import("models/UserBirthdays");
 const UserItems = sequelize.import("models/UserItems");
 const UserPerms = sequelize.import("models/UserPerms");
+const UserBalanceHistory = sequelize.import("models/UserBalanceHistory");
 
 // UserItems.prototype.addItem = async function(item) {
 // 	const userItem = await UserItems.findOne({
@@ -42,4 +43,4 @@ const UserPerms = sequelize.import("models/UserPerms");
 // };
 
 //module.exports = { Users, CurrencyShop, UserItems, Quotes };
-module.exports = { Quotes, UserBalance, UserBirthdays, UserItems, UserPerms };
+module.exports = { Quotes, UserBalance, UserBirthdays, UserItems, UserPerms, UserBalanceHistory };

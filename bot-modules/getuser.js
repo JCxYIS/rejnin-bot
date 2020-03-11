@@ -6,9 +6,10 @@ function getUserByName(collection, name){
 
 async function getUser(message, searchParameter){
   if (!message || !searchParameter) return;
-  const user = message.mentions.users.first()
-  || getUserByName(message.guild.members, searchParameter)
-  || await message.client.fetchUser(searchParameter, true);
+  const user = isNaN(searchParameter) ?
+  message.mentions.users.first()
+  || getUserByName(message.guild.members, searchParameter) :
+  await message.client.fetchUser(searchParameter, true);
   return user;
 };
 module.exports = getUser;

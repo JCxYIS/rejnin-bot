@@ -1,8 +1,9 @@
 const fs = require("fs");
 const Discord = require("discord.js");
 const Sequelize = require("sequelize");
+const Canvas = require("canvas");
 const { token } = require("./config.json");
-const { UserBalance } = require("./dbObjects.js");
+const { UserBalance, UserBalanceHistory } = require("./dbObjects.js");
 
 const client = new Discord.Client();
 const clientAttchments = ["commands", "currency"];
@@ -34,7 +35,7 @@ async function init(){
 
 	//syncing currency model with collection
 	const storedBalances = await UserBalance.findAll();
-	storedBalances.forEach(b => client.currency.set(b.user_id, b))
+	storedBalances.forEach(b => client.currency.set(b.user_id, b));
 
 	Reflect.defineProperty(client.currency, 'add', {
 		value: async function add(id, amount) {
@@ -42,10 +43,12 @@ async function init(){
 			if (!user) {
 				//if (amount < 0) return channel.send(`Insufficient Doubees. ($**0**)`);
 				const newUser = await UserBalance.create({ user_id: id, balance: amount });
+				UserBalanceHistory.create({ user_id: id, balance: amount });
 				client.currency.set(id, newUser);
 				return newUser;
 			}
 			user.balance += Number(amount);
+			UserBalanceHistory.create({ user_id: id, balance: user.balance });
 			return user.save();
 		},
 	});
