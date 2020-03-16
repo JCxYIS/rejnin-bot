@@ -57,7 +57,7 @@ module.exports = class {
   	if (!command) return;
 
     if (command.ownerExclusive && message.author.id !== ownerID){
-      message.client.fetchUser(ownerID)
+      message.client.users.fetch(ownerID)
       .then(owner => {
         message.channel.send(`Hey! You're not \`${owner.tag}\`! What are you doing?`);
       })

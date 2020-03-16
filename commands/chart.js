@@ -22,7 +22,7 @@ module.exports = {
 		const data = allHistory.map(entry => {
 			return { x: moment(entry.timestamp, "YYYY-MM-DD HH:mm:ss.SSS Z"), y: entry.balance };
 		});
-		const mainColor = message.guild.members.has(author.id) ? message.guild.members.get(author.id).displayHexColor : "#00A9CC";
+		const mainColor = message.guild.members.cache.has(author.id) ? message.guild.members.cache.get(author.id).displayHexColor : "#00A9CC";
 		const fillColor = HexToRGBA(mainColor, 0.2);
 		const borderColor = HexToRGBA(mainColor, 0.7);
 

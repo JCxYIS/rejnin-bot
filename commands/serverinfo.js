@@ -17,7 +17,7 @@ module.exports = {
 		.addField("Created at", guild.createdAt, true)
     .addField("ID", `\`${guild.id}\``, true)
 		.addField("Total Members", guild.memberCount, true)
-    .addField("Bots", guild.members.filter(member => member.user.bot).size, true)
+    .addField("Bots", guild.members.cache.filter(member => member.user.bot).size, true)
 		.addField("Channels", guild.channels.size, true)
 		.addField("Default Channel (#general)", defaultChannel, true)
 		.addField("Owner", guild.owner.toString(), true)

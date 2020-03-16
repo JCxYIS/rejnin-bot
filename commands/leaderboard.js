@@ -19,7 +19,7 @@ module.exports = {
 				else if (index == 1) rank = "2nd";
 				else if (index == 2) rank = "3rd";
 
-				const fetchedUser = message.client.users.get(user.user_id)
+				const fetchedUser = message.client.users.fetch(user.user_id)
 				const username = fetchedUser.username;
 
 				const balance = user.balance;

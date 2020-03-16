@@ -8,8 +8,8 @@ async function getUser(message, searchParameter){
   if (!message || !searchParameter) return;
   const user = isNaN(searchParameter) ?
   message.mentions.users.first()
-  || getUserByName(message.guild.members, searchParameter) :
-  await message.client.fetchUser(searchParameter, true);
+  || getUserByName(message.guild.members.cache, searchParameter) :
+  await message.client.users.fetch(searchParameter, true);
   return user;
 };
 module.exports = getUser;

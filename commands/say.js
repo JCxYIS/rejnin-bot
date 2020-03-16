@@ -9,7 +9,7 @@ module.exports = {
 	async execute(message, args){
     const client = message.client;
 
-    const destination = await client.channels.get(args[0]) || await client.fetchUser(args[0], true);
+    const destination = await client.channels.fetch(args[0]) || await client.users.fetch(args[0], true);
     if (!destination) return message.channel.send("Couldn't find destination!");
     let destinationName = !!destination.type ? destination.name : destination.username;
 

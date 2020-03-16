@@ -9,7 +9,7 @@ function getDefaultChannel(guild, client){
           break channelLoop;
       }
   };
-  let channel = client.channels.get(guild.systemChannelID || channelID);
+  let channel = client.channels.cache.get(guild.systemChannelID || channelID);
   return channel;
 };
 

@@ -17,8 +17,9 @@ module.exports = {
 			Embed.addField("Tag", `${user.tag}`, true);
 			Embed.addField("ID", `\`${user.id}\``, true);
 
-			if(!!message.guild.members.has(user.id)){
-				const member = message.guild.members.get(user.id);
+			const allMembers = await message.guild.members.fetch();
+			if (allMembers.has(user.id)){
+				const member = allMembers.get(user.id);
 				Embed.addBlankField()
 				if (!!member.nickname)
 					Embed.addField("Nickname", member.nickname, true);
