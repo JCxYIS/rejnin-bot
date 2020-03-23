@@ -17,7 +17,7 @@ module.exports = class {
     // const preStuff = (message.channel.type === "text") ? `[${message.guild.nameAcronym}][${message.channel.name}]` :
     //   (message.channel.type === "dm") ? `[DM]` : `[${message.channel.type}]`
     //
-    // console.log(`[${timestamp}]${preStuff} ${message.author.tag}: ${message.content}`)
+    // message.client.logger.log(`[${timestamp}]${preStuff} ${message.author.tag}: ${message.content}`)
 
   	if (message.author.bot) return;
 
@@ -61,7 +61,7 @@ module.exports = class {
       .then(owner => {
         message.channel.send(`Hey! You're not \`${owner.tag}\`! What are you doing?`);
       })
-      .catch(error => console.error(error));
+      .catch(error => message.client.logger.error(error));
       return;
     }
   	else if (command.guildOnly && message.channel.type !== "text"){
@@ -96,9 +96,10 @@ module.exports = class {
   	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
   	try {
+      message.client.logger.log(`\`${message.author.username}\` tried to execute \`${command.name}\` in \`${(message.channel.type === "text") ? message.channel.name : "DMs"}\`.`);
   		command.execute(message, args);
   	} catch (error) {
-  		console.error(error);
+  		message.client.logger.error(error);
   		message.reply('there was an error trying to execute that command!');
   	}
   }

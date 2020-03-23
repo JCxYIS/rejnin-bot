@@ -16,7 +16,7 @@ module.exports = {
 				return message.channel.send(`**${message.author.username}** now has \`$${message.client.currency.getBalance(message.author.id)}\`.`);
 			};
 			addSelf()
-			.catch(error => console.error(error));
+			.catch(error => message.client.logger.error(error));
 			return;
 		}
 
@@ -34,7 +34,7 @@ module.exports = {
 		})
 		.catch(error => {
 				message.channel.send("I couldn't find the user you were looking for!");
-				console.error(error);
+				message.client.logger.error(error);
 		});
 	},
 };

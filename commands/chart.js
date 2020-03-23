@@ -72,7 +72,7 @@ module.exports = {
 			message.channel.send(attachment);
 		})
 		.catch(error => {
-			console.error(error);
+			message.client.logger.error(error);
 		});
 	},
 };

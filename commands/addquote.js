@@ -15,9 +15,9 @@ module.exports = {
 					user_id: user.id,
 					description: content
 				})
-				return message.channel.send(`Successfully added quote to **${user.username}**.`)
+				return message.channel.send(`Successfully added quote to **${user.username}**.`);
 			} catch(error){
-				console.error(error);
+				message.client.logger.error(error);
 				return message.reply('Something went wrong with adding a quote.');
 			}
 		}
@@ -28,7 +28,7 @@ module.exports = {
 			try {
 				user = await getUser(message, name);
 			} catch(error){
-				console.error(error);
+				message.client.logger.error(error);
 				return message.channel.send("I couldn't find that user!");
 			}
 
@@ -44,10 +44,10 @@ module.exports = {
 
 			ImgDownload.image(options)
 			.then(({ filename }) => {
-				console.log(`[${timestamp}]Quote image saved to \`${filename}\`.`);
+				message.client.logger.log(`Quote image saved to \`${filename}\`.`);
 			})
 			.catch(error => {
-				console.error(error);
+				message.client.logger.error(error);
 				return message.channel.send("Couldn't save file!");
 			})
 			.then(() => {
@@ -68,7 +68,7 @@ module.exports = {
 		try {
 			user = await getUser(message, name);
 		} catch(error){
-			console.error(error);
+			message.client.logger.error(error);
 			return message.channel.send("I couldn't find that user!");
 		}
 		const content = message.content.slice(quoteStart + 1, quoteEnd);

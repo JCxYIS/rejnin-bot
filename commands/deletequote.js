@@ -17,7 +17,7 @@ module.exports = {
 		try {
 			user = await getUser(message, name);
 		} catch(error){
-			console.error(error);
+			message.client.logger.error(error);
 			return message.channel.send("I couldn't find that user!");
 		}
 
@@ -48,7 +48,7 @@ module.exports = {
 					collector.stop();
 					return message.channel.send(`Successfully deleted all **${allQuotes.length}** quotes from **${user.username}**.`);
 				} catch(error){
-						console.error(error);
+						message.client.logger.error(error);
 						return message.reply('Something went wrong with deleting a quote.');
 					}
 			});
@@ -74,7 +74,7 @@ module.exports = {
 				});
 				return message.channel.send(`Successfully deleted quote **#${number}** from **${user.username}**.`);
 			} catch(error){
-					console.error(error);
+					message.client.logger.error(error);
 					return message.reply('Something went wrong with deleting a quote.');
 				}
 		}

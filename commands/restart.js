@@ -13,6 +13,6 @@ module.exports = {
 
 		message.channel.send(Embed)
 		.then(message => process.exit())
-		.catch(error => console.error(error));
+		.catch(error => message.client.logger.error(error));
 	},
 };

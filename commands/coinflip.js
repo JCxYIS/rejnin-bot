@@ -52,7 +52,7 @@ module.exports = {
 			side = "heads";
 		}
 
-		//console.log(`[${moment().format("LTS")}] ${message.author.username} rolled a ${num}.`)
+		message.client.logger.log(`\`${message.author.username}\` rolled a ${num}. (${side})`);
 		if (!!guess && !!amount){
 			message.client.currency.add(message.author.id, -amount);
 			amount = (guess === side) ? multiplier * amount : 0;
@@ -74,7 +74,7 @@ module.exports = {
 				}
 			})
 			.catch(error => {
-				console.error(error);
+				message.client.logger.error(error);
 			});
 			return;
 		}

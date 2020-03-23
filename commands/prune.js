@@ -22,14 +22,11 @@ module.exports = {
 
 		message.channel.bulkDelete(amount, true)
 		.then(messages => {
-			Embed.setTitle(`I have deleted ${messages.size - 1} messages for you.`)
-			.setAuthor(message.member.name, message.author.displayAvatarURL)
-			return message.channel.send(Embed);
-			})
-		.then(msg => msg.delete(5000))
+			message.client.logger.log(`${message.author.username} deleted ${messages.size - 1} messages in ${message.channel.name}.`);
+		})
 		.catch(err => {
-		console.error(err);
-		message.channel.send('There was an error trying to prune messages in this channel!');
+			message.client.logger.error(err);
+			message.channel.send('There was an error trying to prune messages in this channel!');
 		});
 	},
 };

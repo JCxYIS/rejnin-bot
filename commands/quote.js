@@ -58,7 +58,7 @@ module.exports = {
 
 				quote.increment("usage_count");
 			}catch(error) {
-				console.error(error);
+				message.client.logger.error(error);
 				message.channel.send("error sending quote")
 			}
 
