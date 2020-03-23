@@ -68,7 +68,7 @@ module.exports = {
 			})
 			.then(newBalance =>{
 				if (newBalance === 0){
-					const [filepath, filename] = Math.floor(Math.random() * 2) === 1 ? ["./assets/notstonks.jpg", "notstonks.jpg"] : ["./assets/stinks.png", "stinks.png"];
+					const [filepath, filename] = ["./assets/stinks.png", "stinks.png"];
 					const img = new Discord.Attachment(filepath, filename);
 					message.channel.send("", img);
 				}
