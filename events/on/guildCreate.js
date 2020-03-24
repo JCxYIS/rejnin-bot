@@ -21,6 +21,6 @@ module.exports = class {
     };
 
     getDefaultChannel(guild, this.client).send({embed: joinEmbed});
-    message.client.logger.log(`Joined ${guild.name}.`);
+    console.log(`[${timestamp}][Bot] Joined ${guild.name}.`)
   }
 }

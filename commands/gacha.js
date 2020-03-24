@@ -10,7 +10,6 @@ module.exports = {
 	description: "Draws a card! Costs **100** Doubees.",
   aliases: ["抽卡", "draw", "十連抽", "抽", "十連"],
   usage: "[10]",
-	ownerExclusive: true,
 
 	async execute(message, args){
     async function gachaPull() {
@@ -38,7 +37,7 @@ module.exports = {
 			cardCount.amount += 1;
 			return cardCount.save();
 		} catch(error){
-			message.client.logger.error(error);
+			console.error(error);
 		}
 
 		const Embed = new Discord.RichEmbed(embed(message));

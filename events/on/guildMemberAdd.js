@@ -21,6 +21,6 @@ module.exports = class {
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
 
     getDefaultChannel(member.guild, this.client).send(`Welcome to the server, ${member}!`, attachment);
-    message.client.logger.log(`${member.displayName} has joined ${member.guild.nameAcronym}.`);
+    console.log(`[${timestamp}][${member.guild.nameAcronym}] ${member.displayName} has joined the server.`)
   }
 }

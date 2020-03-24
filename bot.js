@@ -1,12 +1,15 @@
 const fs = require("fs");
 const Discord = require("discord.js");
 const Sequelize = require("sequelize");
+const Canvas = require("canvas");
 const { token } = require("./config.json");
 const { UserBalance, UserBalanceHistory } = require("./dbObjects.js");
 
 const client = new Discord.Client();
-client.commands = new Discord.Collection();
-client.currency = new Discord.Collection();
+const clientAttchments = ["commands", "currency"];
+for (const name of clientAttchments){
+	client[name] = new Discord.Collection();
+};
 //bruh I'm getting nowhere with this bot fml
 
 async function init(){

@@ -10,9 +10,9 @@ module.exports = {
   usage: "<number(max: 20)>",
 	execute(message, args){
 		const currency = message.client.currency;
-		const num = !!args[0] ? parseFloat(args[0]) : 10;
-		if (!Number.isInteger(num) || num > 20 || num < 1) return message.channel.send("Please specify a valid number.");
-		const leaderboard = currency.filter(userID => message.guild.members.has(userID)).sort((a, b) => b.balance - a.balance).first(num)
+		const num = !!args[0] ? parseFloat(args[0]) : 15;
+		if (!Number.isInteger(num) || num > 20) return message.channel.send("Please specify a valid number.");
+		const leaderboard = currency.sort((a, b) => b.balance - a.balance).first(num)
 		.map((user, index) => {
 				let rank = (index + 1) + "th";
 				if (index == 0) rank = "1st";

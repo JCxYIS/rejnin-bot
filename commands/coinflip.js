@@ -52,7 +52,7 @@ module.exports = {
 			side = "heads";
 		}
 
-		message.client.logger.log(`\`${message.author.username}\` rolled a ${num}. (${side})`);
+		//console.log(`[${moment().format("LTS")}] ${message.author.username} rolled a ${num}.`)
 		if (!!guess && !!amount){
 			message.client.currency.add(message.author.id, -amount);
 			amount = (guess === side) ? multiplier * amount : 0;
@@ -68,13 +68,13 @@ module.exports = {
 			})
 			.then(newBalance =>{
 				if (newBalance === 0){
-					const [filepath, filename] = ["./assets/stinks.png", "stinks.png"];
+					const [filepath, filename] = Math.floor(Math.random() * 2) === 1 ? ["./assets/notstonks.jpg", "notstonks.jpg"] : ["./assets/stinks.png", "stinks.png"];
 					const img = new Discord.Attachment(filepath, filename);
 					message.channel.send("", img);
 				}
 			})
 			.catch(error => {
-				message.client.logger.error(error);
+				console.error(error);
 			});
 			return;
 		}

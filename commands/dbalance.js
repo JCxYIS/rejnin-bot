@@ -14,7 +14,7 @@ module.exports = {
 		})
 		.catch(error => {
 			message.channel.send("I couldn't find the user you were looking for!");
-			message.client.logger.error(error);
+			console.error(error);
 		});
 	}
 };

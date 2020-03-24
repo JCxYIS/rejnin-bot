@@ -36,7 +36,7 @@ module.exports = {
       .then(() => message.channel.send(`Successfully sent message to \`${destinationName}\`!`))
       .catch(error => {
         message.channel.send("Couldn't send message!")
-        message.client.logger.error(error);
+        console.error(error);
       });
     }
   },
